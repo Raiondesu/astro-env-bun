@@ -3,7 +3,10 @@
 > A small astro integration to add `.env` types defined using `envField` to Bun's `env`
 
 Astro has a really nice API with virtual modules to define type-safe `.env` variables for the Astro environment.
-Unfortunately, virtual modules aren't always available to use (in `astro.config`, for example), so there's still a possibility to end up with untyped `.env` variables
+Unfortunately, virtual modules aren't always available to use (in `astro.config`, for example), so there's still a possibility to end up with untyped `.env` variables.
+
+That's where this little package comes in!\
+It actually defines astro's variables' schema in `env` and `process.env` to use without Astro's virtual modules!
 
 # Auto-install
 
