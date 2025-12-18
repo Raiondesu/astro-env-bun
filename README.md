@@ -55,3 +55,41 @@ bun add -D astro-env-bun
     // typed as string
     env.MY_VARIABLE;
     ```
+
+## Use variables in astro config
+
+> **Note**
+>
+> The default values for variables missing from `.env` files are set
+> only after `defineSchema` is executed, so use the variables only after actually calling it.
+
+`astro.config.ts`
+```ts
+import envBun, { defineSchema } from 'astro-env-bun';
+import { env } from 'bun';
+
+const schema = defineSchema({
+  // ... define your env variables as usual
+  MY_VARIABLE: envField.string({
+    context: 'client',
+    access: 'public',
+    default: 'my env variable'
+    // ...
+  })
+});
+
+// Now the variables are actually available in `env`
+
+// ...
+export default defineConfig({
+  env: { schema }
+  integrations: [
+    someIntegrationOptions({
+      someOption: env.MY_VARIABLE
+    }),
+
+    // ... if not auto-installed, make sure to add:
+    envBun()
+  ]
+});
+```
